@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" th:href="@{./css/thymeleaf.css}">
+</head>
+<body>
+	<th:block th:insert="~{/menu.html :: menu}"></th:block>
+	<div class="main">
+		<h1>board</h1>
+		[[${count}]]개 글이 있습니다
+		<table>
+			<tr>
+				<th>번호</th>
+				<th>제목</th>
+				<th>date</th>
+				<th>글쓴이</th>
+			</tr>
+			<tr th:each="row : ${list}">
+				<td th:text="${row.id}"></td>
+				<td th:onclick="|location.href='@{/detail(no=${row.id})}'|">[[${row.title}]]</td>
+				<td th:text="${row.date}"></td>
+				<td th:text="${row.name}"></td>
+			</tr>
+		</table>
+		<button th:onclick="|location.href='@{/write}'|">글쓰기</button>
+	</div>
+</body>
+</html>
